@@ -1,0 +1,101 @@
+name: Test Workflow
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Test Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # v6.0.0
+
+      - name: Setup Dates
+        run: |
+          date > filea.txt
+          sleep 1
+          date > fileb.txt
+          sleep 1
+          date > filec.txt
+
+      - name: Generate Commit Message
+        run: |
+          echo "commitmsg=$(echo "Test at $(date)")" >> $GITHUB_ENV
+
+      - name: Commit (main/main)
+        uses: ./
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          app-key: ${{ secrets.APP_KEY }}
+          repository: ${{ secrets.TEST_REPOSITORY }}
+          baseref: main
+          ref: main
+          commitmsg: ${{ env.commitmsg }}
+          files: |
+            filea.txt
+            fileb.txt
+            filec.txt
+
+      - name: Sleep
+        run: |
+          sleep 1
+
+      - name: Setup Dates
+        run: |
+          date > filea.txt
+          sleep 1
+          date > fileb.txt
+          sleep 1
+          date > filec.txt
+
+      - name: Generate Commit Message
+        run: |
+          echo "commitmsg=$(echo "Test at $(date)")" >> $GITHUB_ENV
+
+      - name: Commit (main/undefined)
+        uses: ./
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          app-key: ${{ secrets.APP_KEY }}
+          repository: ${{ secrets.TEST_REPOSITORY }}
+          baseref: main
+          commitmsg: ${{ env.commitmsg }}
+          files: |
+            filea.txt
+            fileb.txt
+            filec.txt
+
+      - name: Sleep
+        run: |
+          sleep 1
+
+      - name: Setup Dates
+        run: |
+          date > filea.txt
+          sleep 1
+          date > fileb.txt
+          sleep 1
+          date > filec.txt
+
+      - name: Generate Commit Message
+        run: |
+          echo "commitmsg=$(echo "Test at $(date)")" >> $GITHUB_ENV
+
+      - name: Generate Branch Name
+        run: |
+          echo "BRANCH=$(echo "test-$(date +%s)")" >> $GITHUB_ENV
+
+      - name: Commit (main/new)
+        uses: ./
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          app-key: ${{ secrets.APP_KEY }}
+          repository: ${{ secrets.TEST_REPOSITORY }}
+          baseref: main
+          ref: ${{ env.BRANCH }}
+          commitmsg: ${{ env.commitmsg }}
+          files: |
+            filea.txt
+            fileb.txt
+            filec.txt

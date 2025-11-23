@@ -1,0 +1,74 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "baseBranchPatterns": [
+    "main"
+  ],
+  "enabledManagers": [
+    "npm",
+    "github-actions"
+  ],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "commitMessageAction": "Update",
+  "separateMajorMinor": true,
+  "separateMinorPatch": true,
+  "rangeStrategy": "pin",
+  "rebaseWhen": "conflicted",
+  "github-actions": {
+    "managerFilePatterns": [
+      "/^\\.github/workflows/.+\\.yml$/"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchCategories": [
+        "npm"
+      ],
+      "enabled": true,
+      "minimumReleaseAge": "5 days"
+    },
+    {
+      "matchCategories": [
+        "github-actions"
+      ],
+      "enabled": true,
+      "minimumReleaseAge": "1 days"
+    },
+    {
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "commitMessageAction": "(Patch) Update"
+    },
+    {
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "commitMessageAction": "(Minor) Update"
+    },
+    {
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "commitMessageAction": "(Major) Update"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "dependencyDashboardApproval": true
+  },
+  "timezone": "America/Chicago",
+  "schedule": [
+    "at any time"
+  ],
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Dependency Updates",
+  "dependencyDashboardApproval": true,
+  "dependencyDashboardAutoclose": true
+}

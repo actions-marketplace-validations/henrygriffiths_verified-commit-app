@@ -1,0 +1,8 @@
+# Dependency Files
+node_modules
+
+
+#Secrets
+*.pem
+*.txt
+*.sh

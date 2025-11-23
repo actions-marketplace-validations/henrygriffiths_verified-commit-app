@@ -1,0 +1,36 @@
+{
+  "name": "verified-commit-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "npx eslint",
+    "lint:fix": "npx eslint --fix",
+    "build": "rollup --config rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henrygriffiths/verified-commit-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/henrygriffiths/verified-commit-app/issues"
+  },
+  "homepage": "https://github.com/henrygriffiths/verified-commit-app#readme",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.1",
+    "jsencrypt": "^3.5.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "rollup": "^4.53.3"
+  }
+}

@@ -1,0 +1,36 @@
+name: Verified Commit App
+description: Commits Files to a Repository Using App Authorization
+author: henrygriffiths
+
+inputs:
+  app-id:
+    description: App ID
+    required: true
+
+  app-key:
+    description: App Private Key (Pem File)
+    required: true
+
+  repository:
+    description: Repository to Commit To (Defaults to github.repository)
+    required: false
+
+  baseref:
+    description: Ref to Base Commit Off Of (Defaults to github.ref)
+    required: false
+
+  ref:
+    description: Ref to Commit To (Defaults to baseref)
+    required: false
+
+  commitmsg:
+    description: Commit Message (Defaults to Empty)
+    required: false
+
+  files:
+    description: Files To Commit
+    required: true
+
+runs:
+  using: node24
+  main: dist/index.js
